@@ -1,0 +1,25 @@
+services:
+  mysql:
+    image: mysql:latest
+    container_name: BDInventario
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234"  
+      MYSQL_DATABASE: Inventario
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "password"
+    ports:
+      - "3308:3306"
+    volumes:
+      - "D:/Giss/Documents/ING SISTEMAS/9 Semestre/Linea_de_profundizacion_lll/Class-18032025-archivos-yaml/mysql_data:/var/lib/mysql"
+      - "./init.sql:/docker-entrypoint-initdb.d/init.sql"
+    networks:
+      - mysql_network
+
+networks:
+  mysql_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+
